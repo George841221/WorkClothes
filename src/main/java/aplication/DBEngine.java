@@ -10,7 +10,6 @@ public class DBEngine {
 
     private final Connection connection;
 
-
     public DBEngine(){
         connection = connect();
     }
@@ -53,10 +52,9 @@ public class DBEngine {
 
             workers.add(employs);
         }
-        } catch (SQLException e) {
+        } catch (SQLException e){
             e.printStackTrace();
         }
-
         return workers;
     }
 
@@ -74,5 +72,4 @@ public class DBEngine {
         }
         return false;
     }
-
 }
