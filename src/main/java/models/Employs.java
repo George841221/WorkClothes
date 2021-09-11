@@ -4,16 +4,29 @@ public class Employs {
 
     private String name;
     private Enum position;
-    private String t_ShirtSyze;
-    private String sweaterSyze;
-    private String vestSyze;
-    private String jacketSyze;
-    private String trousersSyze;
-    private String shortsSyze;
-    private int safetyBootsSyze;
+    private String t_ShirtSize;
+    private String sweaterSize;
+    private String vestSize;
+    private String jacketSize;
+    private String trousersSize;
+    private String shortsSize;
+    private int safetyBootsSize;
 
-    public Employs(String name) {
+    public Employs(String name, Position position) {
         this.name = name;
+        this.position = position;
+    }
+
+    public Employs(String name, String t_ShirtSize, String sweaterSize, String vestSize, String jacketSize,
+                   String trousersSize, String shortsSize, int safetyBootsSize) {
+        this.name = name;
+        this.t_ShirtSize = t_ShirtSize;
+        this.sweaterSize = sweaterSize;
+        this.vestSize = vestSize;
+        this.jacketSize = jacketSize;
+        this.trousersSize = trousersSize;
+        this.shortsSize = shortsSize;
+        this.safetyBootsSize = safetyBootsSize;
     }
 
     public String getName() {
@@ -32,59 +45,64 @@ public class Employs {
         this.position = position;
     }
 
-    public String getT_ShirtSyze() {
-        return t_ShirtSyze;
+    public String getT_ShirtSize() {
+        return t_ShirtSize;
     }
 
-    public void setT_ShirtSyze(String t_ShirtSyze) {
-        this.t_ShirtSyze = t_ShirtSyze;
+    public void setT_ShirtSize(String t_ShirtSize) {
+        this.t_ShirtSize = t_ShirtSize;
     }
 
-    public String getSweaterSyze() {
-        return sweaterSyze;
+    public String getSweaterSize() {
+        return sweaterSize;
     }
 
-    public void setSweaterSyze(String sweaterSyze) {
-        this.sweaterSyze = sweaterSyze;
+    public void setSweaterSize(String sweaterSize) {
+        this.sweaterSize = sweaterSize;
     }
 
-    public String getVestSyze() {
-        return vestSyze;
+    public String getVestSize() {
+        return vestSize;
     }
 
-    public void setVestSyze(String vestSyze) {
-        this.vestSyze = vestSyze;
+    public void setVestSize(String vestSize) {
+        this.vestSize = vestSize;
     }
 
-    public String getJacketSyze() {
-        return jacketSyze;
+    public String getJacketSize() {
+        return jacketSize;
     }
 
-    public void setJacketSyze(String jacketSyze) {
-        this.jacketSyze = jacketSyze;
+    public void setJacketSize(String jacketSize) {
+        this.jacketSize = jacketSize;
     }
 
-    public String getTrousersSyze() {
-        return trousersSyze;
+    public String getTrousersSize() {
+        return trousersSize;
     }
 
-    public void setTrousersSyze(String trousersSyze) {
-        this.trousersSyze = trousersSyze;
+    public void setTrousersSize(String trousersSize) {
+        this.trousersSize = trousersSize;
     }
 
-    public String getShortsSyze() {
-        return shortsSyze;
+    public String getShortsSize() {
+        return shortsSize;
     }
 
-    public void setShortsSyze(String shortsSyze) {
-        this.shortsSyze = shortsSyze;
+    public void setShortsSize(String shortsSize) {
+        this.shortsSize = shortsSize;
     }
 
-    public int getSafetyBootsSyze() {
-        return safetyBootsSyze;
+    public int getSafetyBootsSize() {
+        return safetyBootsSize;
     }
 
-    public void setSafetyBootsSyze(int safetyBootsSyze) {
-        this.safetyBootsSyze = safetyBootsSyze;
+    public void setSafetyBootsSize(int safetyBootsSize) {
+        this.safetyBootsSize = safetyBootsSize;
+    }
+
+    @Override
+    public String toString() {
+        return name + "- " + position;
     }
 }

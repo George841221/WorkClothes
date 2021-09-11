@@ -1,4 +1,7 @@
 import aplication.DBEngine;
+import models.Employs;
+
+import java.util.List;
 
 public class Main {
 
@@ -6,7 +9,13 @@ public class Main {
 
         DBEngine engine = new DBEngine();
 
-        System.out.println(engine.isConnected());
+     //   System.out.println(engine.isConnected());
 
+        if (engine.workerName(engine.allWorkers())){
+            while (engine.isConnected()) {
+                List<Employs> workers = engine.allWorkers();
+                System.out.println(workers);
+            }
+        }
     }
 }

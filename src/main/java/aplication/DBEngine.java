@@ -4,23 +4,15 @@ import models.Employs;
 import models.Position;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
 public class DBEngine {
 
-    private Connection connection;
-    private boolean botton;
+    private final Connection connection;
+
 
     public DBEngine(){
         connection = connect();
-        this.botton = botton;
-    }
-
-    public boolean isBotton() {
-        return botton;
     }
 
     public boolean isConnected() {
@@ -44,7 +36,7 @@ public class DBEngine {
     }
 
     public List<Employs> allWorkers() {
-        String query = "SELECT name, position FROM workers";
+        String query = "SELECT worker_name, position FROM workers";
 
         List<Employs> workers = new ArrayList<>();
 
@@ -52,13 +44,15 @@ public class DBEngine {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            String name = resultSet.getString("name");
-            Position position = Position.valueOf("position");
+        while (resultSet.next()) {
+            String name = resultSet.getString("worker_name");
+            String positionFromDB = resultSet.getString("position").toUpperCase();
+            Position position = Position.valueOf(positionFromDB);
 
-            Employs employs = new Employs(name);
+            Employs employs = new Employs(name, position);
 
             workers.add(employs);
-
+        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,18 +60,19 @@ public class DBEngine {
         return workers;
     }
 
-    public List<Employs> workerName(){
+    public boolean workerName(List<Employs> worker){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Who sizes you need? Press " + "a - buttom " + " if you need a list!");
-        String bottom = sc.nextLine();
-        if (bottom == "all") {
-            return allWorkers();
-        }else {
-            System.out.println("dolgozó neve: ");
-             String name = sc.nextLine();
-
+        System.out.print("Who sizes you need? Write " + "(all)" + " in console" + " if you need a list!");
+        String  button= sc.nextLine();
+        if (button.equals("all")) {
+            System.out.println(worker);
+        } else {
+            if (!button.equals("all")){
+                System.out.println("Wrong command! Try again!");
+                workerName(worker);
+            }
         }
-        return null;
+        return false;
     }
 
 }
