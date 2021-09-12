@@ -58,17 +58,46 @@ public class DBEngine {
         return workers;
     }
 
+    public Employs workerWithSize(String workerName) {
+        String query = "SELECT * FROM workers WHERE worker_name = ?";
+        Employs employee = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, workerName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("worker_name");
+                String positionFromDB = resultSet.getString("position").toUpperCase();
+                Position position = Position.valueOf(positionFromDB);
+                String t_ShirtSize = resultSet.getString("t_shirt_size");
+                String sweaterSize = resultSet.getString("sweater_size");
+                String vestSize = resultSet.getString("vest_size");
+                String jacketSize = resultSet.getString("jacket_size");
+                int trousersSize = resultSet.getInt("trousers_size");
+                int shortsSize = resultSet.getInt("shorts_size");
+                int safetyBootsSize = resultSet.getInt("safety_boots_size");
+
+                employee = new Employs(name, position, t_ShirtSize, sweaterSize, vestSize,
+                        jacketSize, trousersSize, shortsSize, safetyBootsSize);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return employee;
+    }
+
     public boolean workerName(List<Employs> worker){
         Scanner sc = new Scanner(System.in);
         System.out.print("Who sizes you need? Write " + "(all)" + " in console" + " if you need a list!");
         String  button= sc.nextLine();
         if (button.equals("all")) {
             System.out.println(worker);
-        } else {
-            if (!button.equals("all")){
-                System.out.println("Wrong command! Try again!");
-                workerName(worker);
-            }
+        }
+        else {
+            System.out.println("Wrong command! Try again!");
+            workerName(worker);
         }
         return false;
     }

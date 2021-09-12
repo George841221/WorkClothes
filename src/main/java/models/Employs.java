@@ -3,13 +3,13 @@ package models;
 public class Employs {
 
     private String name;
-    private Enum position;
+    private Position position;
     private String t_ShirtSize;
     private String sweaterSize;
     private String vestSize;
     private String jacketSize;
-    private String trousersSize;
-    private String shortsSize;
+    private int trousersSize;
+    private int shortsSize;
     private int safetyBootsSize;
 
     public Employs(String name, Position position) {
@@ -17,9 +17,11 @@ public class Employs {
         this.position = position;
     }
 
-    public Employs(String name, String t_ShirtSize, String sweaterSize, String vestSize, String jacketSize,
-                   String trousersSize, String shortsSize, int safetyBootsSize) {
+    public Employs(String name, Position position, String t_ShirtSize,
+                   String sweaterSize, String vestSize, String jacketSize,
+                   int trousersSize, int shortsSize, int safetyBootsSize) {
         this.name = name;
+        this.position = position;
         this.t_ShirtSize = t_ShirtSize;
         this.sweaterSize = sweaterSize;
         this.vestSize = vestSize;
@@ -28,6 +30,7 @@ public class Employs {
         this.shortsSize = shortsSize;
         this.safetyBootsSize = safetyBootsSize;
     }
+
 
     public String getName() {
         return name;
@@ -41,7 +44,7 @@ public class Employs {
         return position;
     }
 
-    public void setPosition(Enum position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -77,19 +80,19 @@ public class Employs {
         this.jacketSize = jacketSize;
     }
 
-    public String getTrousersSize() {
+    public int getTrousersSize() {
         return trousersSize;
     }
 
-    public void setTrousersSize(String trousersSize) {
+    public void setTrousersSize(int trousersSize) {
         this.trousersSize = trousersSize;
     }
 
-    public String getShortsSize() {
+    public int getShortsSize() {
         return shortsSize;
     }
 
-    public void setShortsSize(String shortsSize) {
+    public void setShortsSize(int shortsSize) {
         this.shortsSize = shortsSize;
     }
 
@@ -101,8 +104,20 @@ public class Employs {
         this.safetyBootsSize = safetyBootsSize;
     }
 
+
+
     @Override
     public String toString() {
-        return name + "- " + position;
+        return name +
+                "- " + position/* +
+        " His sizes: " + t_ShirtSize +
+                ", " + sweaterSize +
+                ", " + vestSize +
+                ", " + jacketSize +
+                ", " + trousersSize +
+                ", " + shortsSize +
+                ", " + safetyBootsSize*/;
     }
+
+
 }
