@@ -34,6 +34,28 @@ public class DBEngine {
         }
     }
 
+    public List<Employs> onlyWorkers() {
+        String query = "SELECT worker_name FROM workers";
+        List<Employs> workerList = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("worker_name");
+
+                Employs employs = new Employs(name);
+
+                workerList.add(employs);
+
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return workerList;
+    }
+
     public List<Employs> allWorkers() {
         String query = "SELECT worker_name, position FROM workers";
 
@@ -58,14 +80,13 @@ public class DBEngine {
         return workers;
     }
 
-    public Employs workerWithSize(String workerName) {
-        String query = "SELECT * FROM workers WHERE worker_name = ?";
-        Employs employee = null;
+    public List<Employs> workerWithSize(String sourceName) {
+        String query = "SELECT * FROM workers WHERE worker_name = " + sourceName;
+        List<Employs> employee = new ArrayList<>();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, workerName);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String name = resultSet.getString("worker_name");
@@ -79,8 +100,10 @@ public class DBEngine {
                 int shortsSize = resultSet.getInt("shorts_size");
                 int safetyBootsSize = resultSet.getInt("safety_boots_size");
 
-                employee = new Employs(name, position, t_ShirtSize, sweaterSize, vestSize,
+                Employs employs = new Employs(name, position, t_ShirtSize, sweaterSize, vestSize,
                         jacketSize, trousersSize, shortsSize, safetyBootsSize);
+
+                employee.add(employs);
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -90,15 +113,18 @@ public class DBEngine {
 
     public boolean workerName(List<Employs> worker){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Who sizes you need? Write " + "(all)" + " in console" + " if you need a list!");
+        System.out.print("Who sizes you need? Write " + "(all)" + " in console" + " if you need the employee list!");
         String  button= sc.nextLine();
         if (button.equals("all")) {
             System.out.println(worker);
         }
         else {
             System.out.println("Wrong command! Try again!");
-            workerName(worker);
-        }
+            workerName(allWorkers());
+            }
         return false;
     }
 }
+
+
+

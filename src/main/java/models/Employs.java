@@ -1,5 +1,9 @@
 package models;
 
+import aplication.DBEngine;
+
+import java.util.ArrayList;
+
 public class Employs {
 
     private String name;
@@ -11,6 +15,12 @@ public class Employs {
     private int trousersSize;
     private int shortsSize;
     private int safetyBootsSize;
+
+    DBEngine engin = new DBEngine();
+
+    public Employs(String name) {
+        this.name = name;
+    }
 
     public Employs(String name, Position position) {
         this.name = name;

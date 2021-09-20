@@ -13,8 +13,8 @@ public class Main {
 
         if (engine.workerName(engine.allWorkers())){
             while (engine.isConnected()) {
-                List<Employs> workers = engine.allWorkers();
-                System.out.println(workers);
+                List<Employs> worker = engine.allWorkers();
+                System.out.println(worker);
             }
         }
     }
