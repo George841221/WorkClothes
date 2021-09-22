@@ -16,7 +16,8 @@ public class Employs {
     private int shortsSize;
     private int safetyBootsSize;
 
-    DBEngine engin = new DBEngine();
+    public Employs() {
+    }
 
     public Employs(String name) {
         this.name = name;

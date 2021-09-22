@@ -36,6 +36,7 @@ public class DBEngine {
 
     public List<Employs> onlyWorkers() {
         String query = "SELECT worker_name FROM workers";
+        Employs s = new Employs();
         List<Employs> workerList = new ArrayList<>();
 
         try {
@@ -48,7 +49,6 @@ public class DBEngine {
                 Employs employs = new Employs(name);
 
                 workerList.add(employs);
-
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -110,21 +110,4 @@ public class DBEngine {
         }
         return employee;
     }
-
-    public boolean workerName(List<Employs> worker){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Who sizes you need? Write " + "(all)" + " in console" + " if you need the employee list!");
-        String  button= sc.nextLine();
-        if (button.equals("all")) {
-            System.out.println(worker);
-        }
-        else {
-            System.out.println("Wrong command! Try again!");
-            workerName(allWorkers());
-            }
-        return false;
-    }
 }
-
-
-
