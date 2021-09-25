@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>ProjectMunkaruha</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
@@ -19,10 +19,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.26</version>
         </dependency>
+
         <dependency>
-            <groupId>com.cedarsoftware</groupId>
-            <artifactId>java-util</artifactId>
-            <version>1.8.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

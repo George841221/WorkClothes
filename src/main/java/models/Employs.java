@@ -1,19 +1,29 @@
 package models;
 
 import aplication.DBEngine;
+import lombok.Getter;
 
 import java.util.ArrayList;
 
 public class Employs {
 
+    @Getter
     private String name;
+    @Getter
     private Position position;
+    @Getter
     private String t_ShirtSize;
+    @Getter
     private String sweaterSize;
+    @Getter
     private String vestSize;
+    @Getter
     private String jacketSize;
+    @Getter
     private int trousersSize;
+    @Getter
     private int shortsSize;
+    @Getter
     private int safetyBootsSize;
 
     public Employs() {
@@ -43,91 +53,18 @@ public class Employs {
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Enum getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public String getT_ShirtSize() {
-        return t_ShirtSize;
-    }
-
-    public void setT_ShirtSize(String t_ShirtSize) {
-        this.t_ShirtSize = t_ShirtSize;
-    }
-
-    public String getSweaterSize() {
-        return sweaterSize;
-    }
-
-    public void setSweaterSize(String sweaterSize) {
-        this.sweaterSize = sweaterSize;
-    }
-
-    public String getVestSize() {
-        return vestSize;
-    }
-
-    public void setVestSize(String vestSize) {
-        this.vestSize = vestSize;
-    }
-
-    public String getJacketSize() {
-        return jacketSize;
-    }
-
-    public void setJacketSize(String jacketSize) {
-        this.jacketSize = jacketSize;
-    }
-
-    public int getTrousersSize() {
-        return trousersSize;
-    }
-
-    public void setTrousersSize(int trousersSize) {
-        this.trousersSize = trousersSize;
-    }
-
-    public int getShortsSize() {
-        return shortsSize;
-    }
-
-    public void setShortsSize(int shortsSize) {
-        this.shortsSize = shortsSize;
-    }
-
-    public int getSafetyBootsSize() {
-        return safetyBootsSize;
-    }
-
-    public void setSafetyBootsSize(int safetyBootsSize) {
-        this.safetyBootsSize = safetyBootsSize;
-    }
-
-
 
     @Override
     public String toString() {
         return name +
-                "- " + position/* +
+                "- " + position +
         " His sizes: " + t_ShirtSize +
                 ", " + sweaterSize +
                 ", " + vestSize +
                 ", " + jacketSize +
                 ", " + trousersSize +
                 ", " + shortsSize +
-                ", " + safetyBootsSize*/;
+                ", " + safetyBootsSize;
     }
 
 

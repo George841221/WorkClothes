@@ -12,11 +12,14 @@ public class Main {
         DataFromScanner sc = new DataFromScanner();
 
      //   System.out.println(engine.isConnected());
+        /*if (engine.isConnected()) {
+            System.out.println(engine.workerWithSize(engine.onlyWorkerSelect(engine.onlyWorkers())));
+        }*/
 
-        if (sc.workerName(engine.allWorkers())){
+        if (sc.workerName(engine.allWorkers(), engine.onlyWorkers())){
             while (engine.isConnected()) {
                 List<Employs> worker = engine.allWorkers();
-                System.out.println(worker);
+                System.out.println(engine.workerWithSize(engine.onlyWorkerSelect(engine.onlyWorkers())));
             }
         }
     }

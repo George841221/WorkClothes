@@ -36,7 +36,6 @@ public class DBEngine {
 
     public List<Employs> onlyWorkers() {
         String query = "SELECT worker_name FROM workers";
-        Employs s = new Employs();
         List<Employs> workerList = new ArrayList<>();
 
         try {
@@ -54,6 +53,13 @@ public class DBEngine {
             e.printStackTrace();
         }
         return workerList;
+    }
+
+    public Employs onlyWorkerSelect(List<Employs> workerSelect) {
+        for (Employs worker : workerSelect) {
+            System.out.println(workerWithSize(worker));
+        }
+        return null;
     }
 
     public List<Employs> allWorkers() {
@@ -80,13 +86,14 @@ public class DBEngine {
         return workers;
     }
 
-    public List<Employs> workerWithSize(String sourceName) {
-        String query = "SELECT * FROM workers WHERE worker_name = " + sourceName;
-        List<Employs> employee = new ArrayList<>();
+    public Employs workerWithSize(Employs sourceName) {
+        String query = "SELECT * FROM workers WHERE worker_name = ?";
+        Employs result = null;
 
         try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, sourceName.getName());
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 String name = resultSet.getString("worker_name");
@@ -100,14 +107,14 @@ public class DBEngine {
                 int shortsSize = resultSet.getInt("shorts_size");
                 int safetyBootsSize = resultSet.getInt("safety_boots_size");
 
-                Employs employs = new Employs(name, position, t_ShirtSize, sweaterSize, vestSize,
+                result= new Employs(name, position, t_ShirtSize, sweaterSize, vestSize,
                         jacketSize, trousersSize, shortsSize, safetyBootsSize);
 
-                employee.add(employs);
+
             }
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return employee;
+        return result;
     }
 }
